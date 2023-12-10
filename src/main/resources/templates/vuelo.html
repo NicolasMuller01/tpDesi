@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de vuelos</title>
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script> <!-- Include jQuery -->
+</head>
+
+<body>
+
+  <h1 th:text="'Vuelo ' + ${vuelo.numeroVuelo}"></h1>
+
+  <h2 th:text="'Origen: ' + ${origen}"></h2>
+  <h2 th:text="'Destino: ' + ${destino}"></h2>
+
+  <h3 th:text="'Fecha de salida: ' + ${vuelo.fechaHoraSalida}"></h3>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Numero Asiento</th>
+          <th>Precio</th>
+          <!-- Otros encabezados de la tabla -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="asiento : ${asientos}">
+          <td th:text="${asiento.numeroAsiento}"></td>
+          <td th:text="${asiento.precio}"></td>
+          <td>
+            <a th:href="@{/comprar-asiento/{id}(id=${asiento.id})} + '?dni=' + ${dni}">Comprar</a>
+          </td>
+          <!-- Otros datos del objeto -->
+        </tr>
+      </tbody>
+    </table>
+
+
+</body>
+
+</html>

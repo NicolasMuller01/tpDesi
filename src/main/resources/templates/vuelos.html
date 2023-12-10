@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Lista de vuelos</title>
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script> <!-- Include jQuery -->
 </head>
+
 <body>
 
-<h1>Lista de vuelos</h1>
+  <h1>Lista de vuelos</h1>
 
-<form action="#" method="get" id="flightForm">
-  <label for="vuelo">Vuelo:</label>
-  <select id="vuelo" name="vuelo" required>
-    <option th:each="vuelo : ${vuelos}" th:value="${vuelo.numeroVuelo}" th:text="${vuelo.numeroVuelo}"></option>
-  </select>
-
-  <br>
-
-  <label for="asientosDisponibles">Asiento:</label>
-  <select id="asientosDisponibles" name="asientosDisponibles" required>
-    <option th:each="vuelo : ${vuelos}" th:value="${vuelo.getAsientos}" th:text="${vuelo.getAsientos}"></option>
-  </select>
-
-  <br>
-  <input type="hidden" id="dni" name="dni" th:value="${dni}">
-</form>
+  <table>
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Numero Vuelo</th>
+        <th>Tipo Vuelo</th>
+        <th>Estado</th>
+        <th>Asientos Libres</th>
+        <!-- Otros encabezados de la tabla -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="objeto : ${objetosFiltrados}">
+        <td th:text="${objeto.fecha}"></td>
+        <td th:text="${objeto.numeroVuelo}"></td>
+        <td th:text="${objeto.tipoVuelo}"></td>
+        <td th:text="${objeto.estado}"></td>
+        <td th:text="${objeto.capacidad}"></td>
+        <td>
+          <a th:href="@{/vuelo/{id}(id=${objeto.id})}+ '?dni=' + ${dni}">Ver</a>
+        </td>
+        <!-- Otros datos del objeto -->
+      </tr>
+    </tbody>
+  </table>
 
 
 </body>
+
 </html>

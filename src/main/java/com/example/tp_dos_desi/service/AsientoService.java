@@ -26,4 +26,8 @@ public class AsientoService {
         return this.asientoRepository.save(asiento);
     }
 
+    public Asiento buscarPorId(Long id){
+        return this.asientoRepository.getById(id);
+    }
+
 }

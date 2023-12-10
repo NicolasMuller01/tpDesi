@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Datos del cliente</title>
 </head>
+
 <body>
-<h1>Datos del cliente</h1>
-<table>
-    <tr>
-        <td>Nombre:</td>
-        <td th:text="${cliente.nombre}"></td>
-    </tr>
-    <tr>
-        <td>Apellido:</td>
-        <td th:text="${cliente.apellido}"></td>
-    </tr>
-    <tr>
-        <td>Domicilio:</td>
-        <td th:text="${cliente.domicilio}"></td>
-    </tr>
-    <tr>
-        <td>E-mail:</td>
-        <td th:text="${cliente.email}"></td>
-    </tr>
-    <tr>
-        <td>Fecha de nacimiento:</td>
-        <td th:text="${cliente.fechaNacimiento}"></td>
-    </tr>
-    <tr>
-        <td>Número de pasaporte:</td>
-        <td th:text="${cliente.numeroPasaporte}"></td>
-    </tr>
-</table>
+    <h1>Datos del cliente</h1>
+    <table>
+        <tr>
+            <td>Nombre:</td>
+            <td th:text="${cliente.nombre}"></td>
+        </tr>
+        <tr>
+            <td>Apellido:</td>
+            <td th:text="${cliente.apellido}"></td>
+        </tr>
+        <tr>
+            <td>Domicilio:</td>
+            <td th:text="${cliente.domicilio}"></td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td th:text="${cliente.email}"></td>
+        </tr>
+        <tr>
+            <td>Fecha de nacimiento:</td>
+            <td th:text="${cliente.fechaNacimiento}"></td>
+        </tr>
+        <tr>
+            <td>Número de pasaporte:</td>
+            <td th:text="${cliente.numeroPasaporte}"></td>
+        </tr>
+    </table>
 
-<br>
-<form>
-    <label for="fecha">Fecha:</label>
-    <select id="fecha" name="fecha" required>
-      <option >Todos</option>
-    </select>
+    <br />
 
-    <label for="origen">Origen:</label>
-    <select id="origen" name="origen" required>
-      <option >Todos</option>
-    </select>
+    <h1>Filtros para elegir vuelo</h1>
+    <form action="/resultado" method="get">
 
-    <label for="destino">Destion:</label>
-    <select id="destino" name="destino" required>
-      <option >Todos</option>
-    </select>
+        <label hidden for="dni">Usuario: </label>
+        <input name="dni" th:value="${cliente.dni}" hidden/>
+        <br/>
 
-    <label for="vuelo">Tipo Vuelo:</label>
-    <select id="vuelo" name="vuelo" required>
-      <option >Todos</option>
-    </select>
-</form>
+        <label for="fecha">Fecha:</label>
+        <select id="fecha" name="fecha" required>
+            <option>Todos</option>
+            <option th:each="filtro : ${filtroFechaSalida}" th:text="${filtro}"></option>
+        </select>
 
-<script>
+        <label for="origen">Origen:</label>
+        <select name="origen" id="origen" required>
+            <option>Todos</option>
+            <option th:each="filtro : ${filtroCiudadOrigen}" th:text="${filtro}"></option>
+        </select>
 
-</script>
+        <label for="destino">Destion:</label>
+        <select name="destino" id="destino" required>
+            <option>Todos</option>
+            <option th:each="filtro : ${filtroCiudadDestino}" th:text="${filtro}"></option>
+        </select>
 
+        <label for="vuelo">Tipo Vuelo:</label>
+        <select name="vuelo" id="vuelo" required>
+            <option>Todos</option>
+            <option th:each="filtro : ${filtroTipoVuelo}" th:text="${filtro}"></option>
+        </select>
+
+        <button type="submit">Buscar</button>
+    </form>
+
+
+    </script>
 </body>
+
 </html>
