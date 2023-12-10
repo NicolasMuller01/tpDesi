@@ -26,7 +26,7 @@ public class ClienteController {
         Cliente cliente = clienteService.buscarPorDni(dni);
         if (cliente != null) {
             model.addAttribute("cliente", cliente);
-            return "mostrarCliente";
+            return "comprarTicket";
         } else {
             model.addAttribute("error", "El cliente no está registrado.");
             return "index";
