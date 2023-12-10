@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos del cliente</title>
+</head>
+<body>
+<h1>Datos del cliente</h1>
+<table>
+    <tr>
+        <td>Nombre:</td>
+        <td th:text="${cliente.nombre}"></td>
+    </tr>
+    <tr>
+        <td>Apellido:</td>
+        <td th:text="${cliente.apellido}"></td>
+    </tr>
+    <tr>
+        <td>Domicilio:</td>
+        <td th:text="${cliente.domicilio}"></td>
+    </tr>
+    <tr>
+        <td>E-mail:</td>
+        <td th:text="${cliente.email}"></td>
+    </tr>
+    <tr>
+        <td>Fecha de nacimiento:</td>
+        <td th:text="${cliente.fechaNacimiento}"></td>
+    </tr>
+    <tr>
+        <td>Número de pasaporte:</td>
+        <td th:text="${cliente.numeroPasaporte}"></td>
+    </tr>
+</table>
+</body>
+</html>
