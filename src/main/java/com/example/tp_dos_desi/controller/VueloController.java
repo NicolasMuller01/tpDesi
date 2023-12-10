@@ -149,7 +149,7 @@ public class VueloController {
             Avion avion = nuevoVuelo.getAvion();
             Integer capacidad = avion.getCapacidad();
 
-            for (int i = 0; i <= capacidad; i++) {
+            for (int i = 1; i <= capacidad; i++) {
                 Asiento nuevoAsiento = new Asiento(i, nuevoVuelo, true, nuevoVuelo.getPrecio());
                 this.asientoService.agregarAsiento(nuevoAsiento);
             }

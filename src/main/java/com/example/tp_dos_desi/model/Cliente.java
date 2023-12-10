@@ -1,10 +1,14 @@
 package com.example.tp_dos_desi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -20,6 +24,10 @@ public class Cliente {
     private String email;
     private Date fechaNacimiento;
     private String numeroPasaporte;
+
+    @OneToMany(mappedBy = "cliente")
+    @Column(nullable = true)
+    private List<Asiento> asientos;
 
     public String getId() {
         return id;

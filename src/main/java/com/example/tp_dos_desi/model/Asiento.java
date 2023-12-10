@@ -15,6 +15,10 @@ public class Asiento {
     @JoinColumn(name = "vuelo_id")
     private Vuelo vuelo;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
     private boolean disponible;
 
     private double precio;
@@ -68,5 +72,13 @@ public class Asiento {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

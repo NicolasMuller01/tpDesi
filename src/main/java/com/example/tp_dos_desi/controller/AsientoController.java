@@ -63,6 +63,7 @@ public class AsientoController {
         Optional<Vuelo> vuelo = this.vueloService.buscarPorId(asiento.getVuelo().getId());
 
         asiento.setDisponible(false);
+        asiento.setCliente(cliente);
         this.asientoService.guardar(asiento);
 
         model.addAttribute("cliente", cliente);
