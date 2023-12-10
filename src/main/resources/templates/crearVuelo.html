@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+
+<body>
+
+    <h1> Creacion de vuelo</h1>
+
+    <form action="#" method="post" onsubmit="enviarFormulario(event)">
+        <div>
+            <label for="numeroVuelo">Nro de vuelo:</label>
+            <input type="text" id="numeroVuelo" name="numeroVuelo" required>
+        </div>
+        <div>
+            <label for="origen">Origen:</label>
+            <select id="origen" name="origen" required>
+                <!-- Opciones de selección dinámicas con ciudades registradas -->
+                <option th:each="ciudad : ${ciudades}" th:text="${ciudad.nombre}" th:value="${ciudad.id}"></option>
+                <!-- ... -->
+            </select>
+        </div>
+        <div>
+            <label for="destino">Destino:</label>
+            <select id="destino" name="destino" required>
+                <!-- Opciones de selección dinámicas con ciudades registradas -->
+                <option th:each="ciudad : ${ciudades}" th:text="${ciudad.nombre}" th:value="${ciudad.id}"></option>
+                <!-- ... -->
+            </select>
+        </div>
+        <div>
+            <label for="precio">Precio del pasaje:</label>
+            <input type="number" id="precio" name="precio" step="0.01" min="0" required>
+        </div>
+        <div>
+            <label for="fechaHoraPartida">Fecha y hora de partida:</label>
+            <input type="datetime-local" id="fechaHoraPartida" name="fechaHoraPartida" required>
+        </div>
+        <div>
+            <label for="avion">Avión:</label>
+            <select id="avion" name="avion" required>
+                <!-- Opciones de selección dinámicas con aeronaves registradas -->
+                <option th:each="avion : ${aviones}" th:text="${avion.nombreAvion}" th:value="${avion.id}"></option>
+                <!-- ... -->
+            </select>
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="/"> Volver</a>
+
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            // Obtén los valores de los campos del formulario
+            const numeroVuelo = document.getElementById("numeroVuelo").value;
+            const fechaHoraSalida = document.getElementById("fechaHoraPartida").value;
+            let ciudadOrigen = document.getElementById("origen").value;
+            let ciudadDestino = document.getElementById("destino").value;
+            const precio = document.getElementById("precio").value;
+            let avion = document.getElementById("avion").value;
+
+
+
+            fetch("/ciudades/" + ciudadOrigen)
+                .then(r => r.json())
+                .then(d => {
+                    ciudadOrigen = d
+
+                    fetch("/ciudades/" + ciudadDestino)
+                        .then(r => r.json())
+                        .then(d => {
+                            ciudadDestino = d
+
+                            fetch("/aviones/" + avion)
+                                .then(r => r.json())
+                                .then(d => {
+                                    avion = d
+
+                                    console.log({ numeroVuelo, fechaHoraSalida, ciudadOrigen, ciudadDestino, precio, avion })
+
+
+                                    // Crea el objeto JSON con los valores del formulario
+                                    const datosFormulario = {
+                                        numeroVuelo: numeroVuelo,
+                                        fechaHoraSalida: fechaHoraSalida,
+                                        ciudadOrigen,
+                                        ciudadDestino,
+                                        precio: parseFloat(precio),
+                                        asientos: [],
+                                        estado: "Normal",
+                                        avion
+                                    };
+
+                                    console.log(datosFormulario)
+
+                                    // Realiza la solicitud POST al backend con el JSON
+                                    fetch("/vuelos", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify(datosFormulario)
+                                    })
+                                        .then(response => {
+                                            if (response.status == 201) {
+                                                // Lógica después de una respuesta exitosa
+                                                alert("Vuelo creado!")
+                                            } else {
+                                                throw new Error("Error en la solicitud");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            alert(error);
+                                        });
+                                })
+                        })
+                })
+
+        }
+    </script>
+
+</body>
+
+</html>

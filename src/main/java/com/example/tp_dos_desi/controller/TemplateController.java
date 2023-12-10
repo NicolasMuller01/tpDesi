@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.tp_dos_desi.dtos.VueloDTO;
 import com.example.tp_dos_desi.model.Asiento;
+import com.example.tp_dos_desi.model.Avion;
+import com.example.tp_dos_desi.model.Ciudad;
 import com.example.tp_dos_desi.model.Cliente;
 import com.example.tp_dos_desi.model.Vuelo;
 import com.example.tp_dos_desi.service.AsientoService;
+import com.example.tp_dos_desi.service.AvionService;
+import com.example.tp_dos_desi.service.CiudadService;
 import com.example.tp_dos_desi.service.ClienteService;
 import com.example.tp_dos_desi.service.VueloService;
 
@@ -34,6 +38,12 @@ public class TemplateController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private CiudadService ciudadService;
+
+    @Autowired
+    private AvionService avionService;
 
     @GetMapping("/asientos/{numeroVuelo}")
     public String mostrarAsientos(@PathVariable String numeroVuelo, Model model) {
@@ -177,4 +187,15 @@ public class TemplateController {
         return "vuelo";
     }
 
+    @GetMapping("/crear-vuelo")
+    public String crearVuelo(Model model) {
+
+        List<Ciudad> ciudades = this.ciudadService.buscarTodos();
+        List<Avion> aviones = this.avionService.buscarTodos();
+
+        model.addAttribute("ciudades", ciudades);
+        model.addAttribute("aviones", aviones);
+
+        return "crearVuelo";
+    }
 }

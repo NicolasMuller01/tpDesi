@@ -114,6 +114,10 @@ public class VueloController {
             vuelo.setCiudadDestino(ciudadDestinoDB);
         }
 
+        if (vuelo.getCiudadDestino().equals(vuelo.getCiudadOrigen())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(vuelo);
+        }
+
         try {
             Vuelo nuevoVuelo = vueloService.crearVuelo(vuelo);
             Avion avion = nuevoVuelo.getAvion();
