@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AvionController {
@@ -29,12 +30,19 @@ public class AvionController {
 
     @GetMapping("/avion/{id}")
     @ResponseBody
-    public Avion mostrarAsientos(@PathVariable String id) {
-        Avion avion = this.avionService.buscarPorId(id);
+    public Optional<Avion> mostrarAsientos(@PathVariable Long id) {
+        Optional<Avion> avion = this.avionService.buscarPorId(id);
 
         return avion;
     }
 
+    @GetMapping("/aviones/{id}")
+    @ResponseBody
+    public ResponseEntity<Optional<Avion>> buscarAviones(@PathVariable Long id) {
+        Optional<Avion> avion = this.avionService.buscarPorId(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(avion);
+    }
 
     @PostMapping("/avion")
     public ResponseEntity<Avion> crearVuelo(@RequestBody Avion avion) {

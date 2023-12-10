@@ -25,6 +25,7 @@ public class VueloDTO {
     String estado;
     String tipoVuelo;
     Integer capacidad;
+    Integer capacidadTotal;
 
     public VueloDTO(Vuelo v, String tipoVuelo) {
         this.id = v.getId();
@@ -40,6 +41,15 @@ public class VueloDTO {
             }
         }
         this.capacidad = i;
+        this.capacidadTotal = v.getAvion().getCapacidad();
+    }
+
+    public Integer getCapacidadTotal() {
+        return capacidadTotal;
+    }
+
+    public void setCapacidadTotal(Integer capacidadTotal) {
+        this.capacidadTotal = capacidadTotal;
     }
 
     public String getFecha() {

@@ -4,6 +4,9 @@ import com.example.tp_dos_desi.model.Ciudad;
 
 import com.example.tp_dos_desi.repository.CiudadRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,14 @@ public class CiudadService {
 
     public Ciudad guardar(Ciudad asiento) {
         return this.ciudadRepository.save(asiento);
+    }
+
+    public List<Ciudad> buscarTodos() {
+        return this.ciudadRepository.findAll();
+    }
+
+    public Optional<Ciudad> buscarPorId(Long id) {
+        return this.ciudadRepository.findById(id);
     }
 
 }

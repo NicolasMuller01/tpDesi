@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AvionService {
@@ -14,7 +15,7 @@ public class AvionService {
     @Autowired
     private AvionRepository avionRepository;
 
-    public Avion buscarPorId(String id) {
+    public Optional<Avion> buscarPorId(Long id) {
         return this.avionRepository.findById(id);
     }
 
