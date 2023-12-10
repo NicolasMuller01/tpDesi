@@ -6,11 +6,14 @@
 </head>
 <body>
 <h1>Búsqueda de clientes</h1>
-<form action="#" th:action="@{/comprarAsiento}" method="post">
+<form action="#" th:action="@{/elegir-vuelo}" method="post">
   <label for="dni">DNI:</label>
   <input type="text" id="dni" name="dni" required>
   <button type="submit">Buscar</button>
 </form>
 <p th:text="${error}" style="color: red"></p>
+
+
+<a href="/"> Volver</a>
 </body>
 </html>

@@ -2,7 +2,6 @@ package com.example.tp_dos_desi.model;
 
 import javax.persistence.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;

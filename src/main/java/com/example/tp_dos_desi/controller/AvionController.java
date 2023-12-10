@@ -1,12 +1,7 @@
 package com.example.tp_dos_desi.controller;
 
-import com.example.tp_dos_desi.model.Asiento;
 import com.example.tp_dos_desi.model.Avion;
-import com.example.tp_dos_desi.model.Vuelo;
-import com.example.tp_dos_desi.repository.VueloRepository;
-import com.example.tp_dos_desi.service.AsientoService;
 import com.example.tp_dos_desi.service.AvionService;
-import com.example.tp_dos_desi.service.VueloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
