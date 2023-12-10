@@ -4,7 +4,6 @@ import com.example.tp_dos_desi.model.Asiento;
 import com.example.tp_dos_desi.model.Avion;
 import com.example.tp_dos_desi.model.Ciudad;
 import com.example.tp_dos_desi.model.Vuelo;
-import com.example.tp_dos_desi.repository.VueloRepository;
 import com.example.tp_dos_desi.service.AsientoService;
 import com.example.tp_dos_desi.service.AvionService;
 import com.example.tp_dos_desi.service.CiudadService;
@@ -13,19 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class VueloController {
@@ -41,29 +34,6 @@ public class VueloController {
 
     @Autowired
     private AvionService avionService;
-
-    @GetMapping("/vuelo/{id}")
-    public String mostrarVuelos(@PathVariable Long id,@RequestParam("dni") String dni, Model model) {
-        Optional<Vuelo> vuelo = vueloService.buscarPorId(id);
-
-        model.addAttribute("vuelo", vuelo.get());
-        model.addAttribute("origen", vuelo.get().getCiudadOrigen().getNombre());
-        model.addAttribute("destino", vuelo.get().getCiudadDestino().getNombre());
-
-        List<Asiento> asientos = vuelo.get().getAsientos();
-        List<Asiento> asientosFiltrados = new ArrayList<>();
-
-        for (Asiento a : asientos) {
-            if (a.isDisponible()) {
-                asientosFiltrados.add(a);
-            }
-        }
-
-        model.addAttribute("asientos", asientosFiltrados);
-        model.addAttribute("dni", dni);
-
-        return "vuelo";
-    }
 
     @GetMapping("/asientos-vuelo/{numeroVuelo}")
     @ResponseBody

@@ -37,6 +37,12 @@
     </tbody>
   </table>
 
+  <form action="#" th:action="@{/elegir-vuelo}" method="post">
+    <label hidden for="dni">DNI:</label>
+    <input type="text" id="dni" name="dni" hidden th:value="${dni}">
+    <button type="submit">Volver</button>
+  </form>
+  
 
 </body>
 

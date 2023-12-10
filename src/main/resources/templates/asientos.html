@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Lista de asientos</title>
 </head>
+
 <body>
-<h1>Lista de asientos</h1>
 
-<form action="#" method="post">
-  <label for="asiento">Asiento:</label>
-  <select id="asiento" name="asiento" required>
-    <option th:each="asiento : ${asientosDisponibles}" th:value="${asiento.numeroAsiento}" th:text="${asiento.numeroAsiento}"></option>
-  </select>
-  <br>
-  <input type="hidden" id="numeroVuelo" name="numeroVuelo" th:value="${vuelo.numeroVuelo}">
-  <button type="submit">Reservar Asiento</button>
-</form>
+  <h1 th:text="${error}"></h1>
 
-<h2 th:text="'Asientos disponibles para el vuelo ' + ${vuelo.numeroVuelo} ?: 'Default title'" />
-<ul>
-  <li th:each="asiento : ${asientosDisponibles}">
-    <p th:text="'Numero de asiento: ' + ${asiento.numeroAsiento}"></p>
-    <p th:text="'Disponible: ' +${asiento.disponible}"></p>
-    <p th:text="'Precio: ' +${asiento.precio}"></p>
-  </li>
-</ul>
+  <a th:href="'/vuelo/'+${vuelo.id}+'?dni='+${cliente.dni}">Volver</a>
 </body>
+
 </html>

@@ -17,26 +17,29 @@
   <h3 th:text="'Fecha de salida: ' + ${vuelo.fechaHoraSalida}"></h3>
 
 
-    <table>
-      <thead>
-        <tr>
-          <th>Numero Asiento</th>
-          <th>Precio</th>
-          <!-- Otros encabezados de la tabla -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="asiento : ${asientos}">
-          <td th:text="${asiento.numeroAsiento}"></td>
-          <td th:text="${asiento.precio}"></td>
-          <td>
-            <a th:href="@{/comprar-asiento/{id}(id=${asiento.id})} + '?dni=' + ${dni}">Comprar</a>
-          </td>
-          <!-- Otros datos del objeto -->
-        </tr>
-      </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Numero Asiento</th>
+        <th>Precio</th>
+        <!-- Otros encabezados de la tabla -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="asiento : ${asientos}">
+        <td th:text="${asiento.numeroAsiento}"></td>
+        <td th:text="${asiento.precio}"></td>
+        <td>
+          <a th:href="@{/comprar-asiento/{id}(id=${asiento.id})} + '?dni=' + ${dni}">Comprar</a>
+        </td>
+        <!-- Otros datos del objeto -->
+      </tr>
+    </tbody>
+  </table>
 
+  <a
+    th:href="'/resultado?dni='+${dni}+'&fecha='+${fecha}+'&origen=' + ${origen}+'&destino='+${destino}+'&vuelo='+${tipoVuelo}+''">
+    Volver</a>
 
 </body>
 

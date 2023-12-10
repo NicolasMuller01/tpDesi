@@ -1,8 +1,6 @@
 package com.example.tp_dos_desi.service;
 
-import com.example.tp_dos_desi.model.Asiento;
 import com.example.tp_dos_desi.model.Avion;
-import com.example.tp_dos_desi.model.Vuelo;
 import com.example.tp_dos_desi.repository.AvionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ public class AvionService {
     @Autowired
     private AvionRepository avionRepository;
 
-
     public Avion buscarPorId(String id) {
         return this.avionRepository.findById(id);
     }
@@ -29,8 +26,8 @@ public class AvionService {
         return this.avionRepository.save(avion);
     }
 
-    public List<Avion> buscarTodos(){
+    public List<Avion> buscarTodos() {
         return this.avionRepository.findAll();
     }
-    
+
 }
