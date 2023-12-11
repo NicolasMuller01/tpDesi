@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de vuelos</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/listavuelos.css}">
+
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script> <!-- Include jQuery -->
 </head>
 
@@ -30,7 +32,7 @@
         <td th:text="${objeto.estado}"></td>
         <td th:text="${objeto.capacidad}+'/'+${objeto.capacidadTotal}"></td>
         <td>
-          <a th:href="@{/vuelo/{id}(id=${objeto.id})}+ '?dni=' + ${dni}">Ver</a>
+          <a th:href="@{/vuelo/{id}(id=${objeto.id})} + '?dni=' + ${dni}">Ver</a>
         </td>
         <!-- Otros datos del objeto -->
       </tr>

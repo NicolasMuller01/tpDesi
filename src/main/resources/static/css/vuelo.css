@@ -1,0 +1,71 @@
+
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #eee;
+    text-align: left;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+
+.vuelo {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.vuelo h1 {
+    margin-bottom: 0;
+}
+
+.vuelo h2, .vuelo h3 {
+    margin-top: 0;
+}
+
+.vuelo table {
+    margin-top: 20px;
+}
+
+.vuelo button {
+    margin-top: 20px;
+}
